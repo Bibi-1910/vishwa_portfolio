@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vishwa Rajasekar — Architect Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Raleway:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#c4a35a;--gold-light:#e2c98a;--gold-dim:#7a6335;
+  --cream:#f5f0e8;--cream-dim:#c8c0ae;--cream-muted:#888070;
+  --black:#06060a;--surface:#0e0d13;--surface2:#141320;--border:#1e1c2a;
+}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--cream);font-family:'Raleway',sans-serif;font-weight:300;overflow-x:hidden;cursor:none}
+.cursor{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1px solid var(--gold);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .18s ease;opacity:.6}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:2rem 4rem;display:flex;align-items:center;justify-content:space-between;transition:padding .4s}
+nav::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(6,6,10,.95) 0%,transparent 100%);pointer-events:none}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;letter-spacing:.3em;color:var(--cream);text-decoration:none;position:relative;z-index:1}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:2.5rem;list-style:none;position:relative;z-index:1}
+.nav-links a{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--cream-dim);text-decoration:none;transition:color .3s;font-weight:400}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;border:1px solid var(--gold-dim);padding:.6rem 1.6rem;color:var(--gold);text-decoration:none;transition:all .3s;position:relative;z-index:1}
+.nav-cta:hover{background:var(--gold);color:var(--black)}
+
+/* HERO */
+.hero{position:relative;height:100vh;min-height:700px;display:flex;align-items:center;justify-content:flex-start;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(160deg,#0a0914 0%,#06060a 40%,#0d0c18 100%)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(196,163,90,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(196,163,90,.04) 1px,transparent 1px);background-size:80px 80px;animation:gridShift 20s linear infinite}
+@keyframes gridShift{to{background-position:80px 80px}}
+.hero-content{position:relative;z-index:2;padding:0 4rem 8rem;width:min(100%,900px)}
+.hero-tag{font-size:.65rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem;opacity:0;animation:fadeUp .8s .2s forwards}
+.hero-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(5rem,11vw,10rem);font-weight:300;line-height:.9;letter-spacing:-.02em;margin-bottom:1.8rem}
+.hero-h1 .line{display:block;overflow:hidden}
+.hero-h1 .word{display:inline-block;opacity:0;transform:translateY(100%);animation:slideUp .9s cubic-bezier(.16,1,.3,1) forwards}
+.hero-h1 .w2{animation-delay:.15s}.hero-h1 .w3{animation-delay:.3s;font-style:italic;color:var(--gold)}
+.hero-sub{font-size:.8rem;letter-spacing:.12em;color:var(--cream-muted);max-width:440px;line-height:2;opacity:0;animation:fadeUp .8s .55s forwards}
+.hero-scroll{position:absolute;right:4rem;bottom:3rem;display:flex;flex-direction:column;align-items:center;gap:.8rem;z-index:2}
+.hero-scroll span{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--cream-muted);writing-mode:vertical-rl;opacity:0;animation:fadeUp .8s .8s forwards}
+.scroll-line{width:1px;height:60px;background:linear-gradient(to bottom,var(--gold),transparent);animation:lineDown 2s 1s infinite}
+@keyframes lineDown{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.hero-numbers{position:absolute;right:4rem;top:50%;transform:translateY(-50%);z-index:2;text-align:right}
+.hero-stat{margin-bottom:2rem;opacity:0;animation:fadeUp .8s forwards}
+.hero-stat:nth-child(1){animation-delay:.4s}.hero-stat:nth-child(2){animation-delay:.55s}.hero-stat:nth-child(3){animation-delay:.7s}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:var(--gold);display:block;line-height:1}
+.stat-label{font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--cream-muted)}
+@keyframes fadeUp{to{opacity:1;transform:none}}
+@keyframes slideUp{to{opacity:1;transform:none}}
+
+/* SECTIONS */
+section{padding:8rem 4rem}
+.section-tag{font-size:.6rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:flex;align-items:center;gap:1rem}
+.section-tag::after{content:'';flex:0 0 40px;height:1px;background:var(--gold-dim)}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,5.5vw,5rem);font-weight:300;line-height:1.05;letter-spacing:-.02em}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:none}
+
+/* ABOUT */
+.about{background:var(--surface);position:relative;overflow:hidden}
+.about::before{content:'';position:absolute;left:-200px;top:-200px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(196,163,90,.05) 0%,transparent 70%);pointer-events:none}
+.about-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:6rem;align-items:start}
+.about-photo-wrap{position:relative}
+.about-photo-frame{border:1px solid var(--gold-dim);padding:1.5rem;position:relative}
+.about-photo-frame::before{content:'';position:absolute;top:-8px;left:-8px;right:8px;bottom:8px;border:1px solid rgba(196,163,90,.2)}
+.about-photo{width:100%;aspect-ratio:3/4;background:var(--surface2);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.about-photo-placeholder{width:100%;height:100%;background:linear-gradient(135deg,#111020 0%,#1a1830 50%,#0d0b1a 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem}
+.photo-initials{font-family:'Cormorant Garamond',serif;font-size:6rem;font-weight:300;color:rgba(196,163,90,.4);line-height:1}
+.photo-dob{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cream-muted)}
+.hello-text{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-style:italic;color:var(--gold);margin-top:1rem;opacity:.6}
+.about-meta{margin-top:1.5rem;display:flex;flex-direction:column;gap:.8rem}
+.about-meta-item{display:flex;gap:.8rem;align-items:center;font-size:.75rem}
+.meta-icon{color:var(--gold);font-size:.9rem}
+.meta-text{color:var(--cream-dim);letter-spacing:.05em}
+.about-right .bio{font-size:1rem;line-height:1.95;color:var(--cream-dim);margin-bottom:2.5rem}
+.about-quote{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;font-style:italic;color:var(--cream);border-left:2px solid var(--gold);padding-left:2rem;line-height:1.5;margin:2.5rem 0}
+.lang-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem}
+.lang-item{padding:1rem;border:1px solid var(--border);transition:border-color .3s}
+.lang-item:hover{border-color:var(--gold-dim)}
+.lang-name{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+.lang-level{font-size:.8rem;color:var(--cream-dim)}
+
+/* EDUCATION */
+.education{background:var(--black)}
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-top:4rem}
+.edu-item{padding:2.5rem;border:1px solid var(--border);position:relative;transition:border-color .4s}
+.edu-item:hover{border-color:var(--gold-dim)}
+.edu-item::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--gold);transition:height .4s}
+.edu-item:hover::before{height:100%}
+.edu-years{font-size:.65rem;letter-spacing:.25em;color:var(--gold);margin-bottom:1rem}
+.edu-degree{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;color:var(--cream);margin-bottom:.5rem}
+.edu-school{font-size:.8rem;color:var(--cream-muted);letter-spacing:.05em}
+
+/* SKILLS */
+.skills-section{background:var(--surface)}
+.skills-outer{display:grid;grid-template-columns:1fr 1fr;gap:5rem;margin-top:4rem}
+.skill-category h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--cream);margin-bottom:2rem;font-weight:400}
+.skill-list{display:flex;flex-wrap:wrap;gap:.8rem}
+.skill-tag{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;border:1px solid var(--border);padding:.5rem 1.2rem;color:var(--cream-dim);transition:all .3s}
+.skill-tag:hover{border-color:var(--gold);color:var(--gold)}
+.software-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.sw-item{display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;border:1px solid var(--border);transition:border-color .3s}
+.sw-item:hover{border-color:var(--gold-dim)}
+.sw-icon{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold);min-width:24px;font-weight:600}
+.sw-name{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cream-dim)}
+.sw-bar-wrap{flex:1;height:2px;background:var(--border);overflow:hidden}
+.sw-bar{height:100%;background:linear-gradient(90deg,var(--gold-dim),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform 1.2s cubic-bezier(.16,1,.3,1)}
+.sw-bar.animated{transform:scaleX(1)}
+
+/* EXPERIENCE */
+.experience{background:var(--black)}
+.exp-timeline{margin-top:4rem;position:relative;padding-left:3rem}
+.exp-timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--gold),var(--gold-dim),transparent)}
+.exp-item{position:relative;padding-bottom:3rem}
+.exp-item::before{content:'';position:absolute;left:-3rem;top:.4rem;width:9px;height:9px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px rgba(196,163,90,.2)}
+.exp-year{font-size:.65rem;letter-spacing:.3em;color:var(--gold);margin-bottom:.5rem}
+.exp-role{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;color:var(--cream);margin-bottom:.3rem}
+.exp-company{font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cream-muted)}
+.exp-type{display:inline-block;margin-top:.5rem;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;border:1px solid var(--gold-dim);padding:.3rem .8rem;color:var(--gold-dim)}
+
+/* PARTICIPATION */
+.participation{background:var(--surface);position:relative;overflow:hidden}
+.participation::after{content:'';position:absolute;right:-200px;bottom:-200px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(196,163,90,.04) 0%,transparent 70%)}
+.awards-list{margin-top:4rem;border-top:1px solid var(--border)}
+.award-item{display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;padding:1.5rem 0;border-bottom:1px solid var(--border);transition:border-color .3s,padding .3s}
+.award-item:hover{border-color:var(--gold-dim);padding-left:.5rem}
+.award-title{font-size:.85rem;letter-spacing:.05em;color:var(--cream);font-weight:400}
+.award-title strong{color:var(--cream);font-weight:500}
+.award-sub{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cream-muted);margin-top:.3rem}
+.award-badge{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;border:1px solid var(--gold-dim);padding:.3rem .8rem;color:var(--gold);white-space:nowrap}
+
+/* INTERESTS */
+.interests{background:var(--black)}
+.interests-grid{display:flex;flex-wrap:wrap;gap:1.5rem;margin-top:4rem}
+.interest-card{padding:2rem 2.5rem;border:1px solid var(--border);text-align:center;flex:1;min-width:130px;transition:all .4s;cursor:default}
+.interest-card:hover{border-color:var(--gold);transform:translateY(-4px)}
+.interest-icon{font-size:2rem;margin-bottom:.8rem;display:block;color:var(--gold);font-family:'Cormorant Garamond',serif;font-style:italic}
+.interest-name{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--cream-dim)}
+
+/* CONTACT */
+.contact{background:var(--surface);min-height:80vh;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.contact::before{content:'';position:absolute;right:-300px;bottom:-300px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(196,163,90,.05) 0%,transparent 70%)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
+.contact-left p{font-size:.9rem;line-height:1.9;color:var(--cream-muted);margin:1.5rem 0 3rem;max-width:400px}
+.contact-details{display:flex;flex-direction:column;gap:1.5rem}
+.contact-detail{display:flex;gap:1.5rem;align-items:flex-start}
+.cd-label{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);min-width:70px;padding-top:.2rem}
+.cd-value{font-size:.85rem;color:var(--cream-dim);line-height:1.6}
+.contact-form{display:flex;flex-direction:column;gap:1.5rem}
+.form-group input,.form-group textarea{width:100%;background:transparent;border:none;border-bottom:1px solid var(--border);padding:.8rem 0;color:var(--cream);font-family:'Raleway',sans-serif;font-size:.85rem;font-weight:300;letter-spacing:.05em;outline:none;transition:border-color .3s}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--gold-dim)}
+.form-group textarea{resize:none;min-height:100px}
+.form-group input::placeholder,.form-group textarea::placeholder{color:var(--cream-muted);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase}
+.form-submit{margin-top:1rem;align-self:flex-start;font-family:'Raleway',sans-serif;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;background:var(--gold);color:var(--black);border:none;padding:1.1rem 3rem;cursor:pointer;font-weight:500;transition:all .3s;position:relative;overflow:hidden}
+.form-submit::before{content:'';position:absolute;inset:0;background:var(--gold-light);transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.16,1,.3,1)}
+.form-submit:hover::before{transform:scaleX(1)}
+.form-submit span{position:relative;z-index:1}
+
+footer{background:var(--black);padding:2.5rem 4rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border)}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.1rem;letter-spacing:.3em;color:var(--cream-dim)}
+.footer-copy{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cream-muted)}
+.footer-social{display:flex;gap:1.5rem}
+.footer-social a{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cream-muted);text-decoration:none;transition:color .3s}
+.footer-social a:hover{color:var(--gold)}
+
+.loader{position:fixed;inset:0;background:var(--black);z-index:999;display:flex;align-items:center;justify-content:center;transition:opacity .8s,visibility .8s}
+.loader.gone{opacity:0;visibility:hidden}
+.loader-inner{text-align:center}
+.loader-line{width:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);animation:loaderLine 1.5s ease forwards}
+@keyframes loaderLine{to{width:220px}}
+.loader-text{font-family:'Cormorant Garamond',serif;font-size:.8rem;letter-spacing:.5em;text-transform:uppercase;color:var(--gold-dim);margin-top:1.5rem}
+
+/* ACHIEVEMENTS GALLERY */
+.gallery-section{background:var(--black);padding:8rem 4rem}
+.gallery-intro{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:4rem}
+.gallery-intro .right-note{font-size:.7rem;letter-spacing:.15em;color:var(--cream-muted);max-width:220px;text-align:right;line-height:1.8}
+.gallery-script{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:3.5rem;color:var(--gold);opacity:.18;position:absolute;right:4rem;top:50%;transform:translateY(-50%);pointer-events:none;white-space:nowrap}
+
+/* Masonry-style grid mirroring the reference layout */
+.achieve-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:3px;position:relative}
+
+/* Big label row above each column */
+.achieve-col{display:flex;flex-direction:column;gap:3px}
+.achieve-col-label{font-size:.58rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);padding:.6rem 0;border-bottom:1px solid var(--gold-dim);margin-bottom:.4rem}
+
+/* Individual photo card */
+.photo-card{position:relative;overflow:hidden;background:var(--surface2)}
+.photo-card.tall{aspect-ratio:4/5}
+.photo-card.wide{aspect-ratio:16/9}
+.photo-card.square{aspect-ratio:1/1}
+.photo-card.short{aspect-ratio:5/3}
+
+/* Dummy placeholder art */
+.photo-dummy{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.2rem;position:relative;overflow:hidden}
+.photo-dummy::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(196,163,90,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(196,163,90,.03) 1px,transparent 1px);background-size:30px 30px}
+.photo-dummy-icon{width:56px;height:56px;border:1px solid var(--gold-dim);border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;z-index:1}
+.photo-dummy-icon svg{stroke:var(--gold-dim);width:22px;height:22px;fill:none;stroke-width:1}
+.photo-dummy-label{font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--cream-muted);position:relative;z-index:1;text-align:center;line-height:1.8}
+.photo-dummy-note{font-size:.55rem;letter-spacing:.15em;color:var(--gold-dim);position:relative;z-index:1;opacity:.7}
+
+/* Hover overlay */
+.photo-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,6,10,.92) 0%,transparent 60%);opacity:0;transition:opacity .4s}
+.photo-card:hover .photo-card-overlay{opacity:1}
+.photo-card-caption{position:absolute;bottom:0;left:0;right:0;padding:1.5rem;transform:translateY(8px);transition:transform .4s;opacity:0}
+.photo-card:hover .photo-card-caption{opacity:1;transform:none}
+.caption-event{font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem}
+.caption-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--cream);font-weight:300}
+
+/* Badge on card */
+.photo-badge{position:absolute;top:1rem;left:1rem;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;background:var(--gold);color:var(--black);padding:.35rem .9rem;font-weight:500;z-index:2}
+
+/* Bottom featured strip — trophy + group */
+.achieve-strip{display:grid;grid-template-columns:1fr 2fr;gap:3px;margin-top:3px}
+
+/* Replace image guide */
+.replace-guide{margin-top:2.5rem;padding:1.2rem 1.8rem;border:1px dashed var(--gold-dim);display:flex;align-items:center;gap:1.2rem}
+.replace-guide-icon{color:var(--gold);font-size:1.3rem}
+.replace-guide p{font-size:.7rem;letter-spacing:.08em;color:var(--cream-muted);line-height:1.7}
+.replace-guide code{font-family:monospace;color:var(--gold-dim);font-size:.68rem;background:rgba(196,163,90,.07);padding:.1rem .4rem}
+
+@media(max-width:900px){
+nav{padding:1.5rem 2rem}.nav-links{display:none}
+section{padding:5rem 2rem}
+.gallery-section{padding:5rem 2rem}
+.about-grid,.edu-grid,.skills-outer,.contact-grid{grid-template-columns:1fr}
+.hero-numbers{display:none}.hero-content{padding:0 2rem 5rem}
+footer{flex-direction:column;gap:1.5rem;text-align:center;padding:2rem}
+.achieve-grid,.achieve-strip{grid-template-columns:1fr}
+.gallery-intro{flex-direction:column;align-items:flex-start;gap:1rem}
+.gallery-intro .right-note{text-align:left}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<div class="loader" id="loader">
+  <div class="loader-inner">
+    <div class="loader-line"></div>
+    <p class="loader-text">Vishwa Rajasekar</p>
+  </div>
+</div>
+
+<nav id="mainNav">
+  <a class="nav-logo" href="#">V<span>.</span>R</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#participation">Awards</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="mailto:vizarchitect2005@gmail.com">Hire Me</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <p class="hero-tag">Architecture Student · Designer · Visionary — Measi Academy of Architecture</p>
+    <h1 class="hero-h1">
+      <span class="line"><span class="word">Vishwa</span></span>
+      <span class="line"><span class="word w2">Rajasekar</span></span>
+      <span class="line"><span class="word w3">Architect</span></span>
+    </h1>
+    <p class="hero-sub">Dedicated to innovative, sustainable, and climate-responsive design — crafting spaces where people, nature, and the built environment meet.</p>
+  </div>
+  <div class="hero-numbers">
+    <div class="hero-stat"><span class="stat-num">10+</span><span class="stat-label">Competitions</span></div>
+    <div class="hero-stat"><span class="stat-num">3</span><span class="stat-label">Firms Worked</span></div>
+    <div class="hero-stat"><span class="stat-num">2026</span><span class="stat-label">B.Arch Target</span></div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div class="reveal">
+      <div class="about-photo-frame">
+        <div class="about-photo">
+          <div class="about-photo-placeholder">
+            <span class="photo-initials">VR</span>
+            <span class="photo-dob">11 May 2005</span>
+            <span class="hello-text">Hello!</span>
+          </div>
+        </div>
+      </div>
+      <div class="about-meta">
+        <div class="about-meta-item"><span class="meta-icon">◎</span><span class="meta-text">Srivilliputhur, Tamil Nadu, India</span></div>
+        <div class="about-meta-item"><span class="meta-icon">◎</span><span class="meta-text">+91 89032 39892</span></div>
+        <div class="about-meta-item"><span class="meta-icon">◎</span><span class="meta-text">vizarchitect2005@gmail.com</span></div>
+        <div class="about-meta-item"><span class="meta-icon">◎</span><span class="meta-text">vishwarajasekar1155@gmail.com</span></div>
+      </div>
+    </div>
+    <div class="reveal">
+      <p class="section-tag">About Me</p>
+      <h2 class="section-title" style="margin-bottom:2rem">Architecture<br>with <em>Purpose</em></h2>
+      <p class="about-right bio">I am an architecture student dedicated to innovative, sustainable, and climate-responsive design. My projects focus on earthy materials, passive strategies, and context-sensitive solutions to craft spaces that are meaningful, expressive, and engaging.</p>
+      <p class="about-right bio">Through academic assignments, competitions, and real-world residential projects, I strive to blend conceptual ideas with practical design, ensuring a close relationship between people, nature, and the built environment.</p>
+      <div class="about-quote">"Design is not just what it looks like — it is how it feels to live within it."</div>
+      <div>
+        <p class="section-tag" style="margin-top:2.5rem">Languages</p>
+        <div class="lang-grid">
+          <div class="lang-item"><p class="lang-name">English</p><p class="lang-level">Proficient</p></div>
+          <div class="lang-item"><p class="lang-name">Tamil</p><p class="lang-level">Native</p></div>
+          <div class="lang-item"><p class="lang-name">Telugu</p><p class="lang-level">Limited</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="education" id="education">
+  <div class="reveal">
+    <p class="section-tag">Academic Background</p>
+    <h2 class="section-title">Education</h2>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-item reveal">
+      <p class="edu-years">2022 — 2027</p>
+      <h3 class="edu-degree">Bachelor of Architecture</h3>
+      <p class="edu-school">Measi Academy of Architecture, Chennai</p>
+    </div>
+    <div class="edu-item reveal">
+      <p class="edu-years">2016 — 2022</p>
+      <h3 class="edu-degree">Secondary & Higher Secondary</h3>
+      <p class="edu-school">Srivi Lions Matric Hr. Sec. School, Srivilliputhur</p>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-section" id="skills">
+  <div class="reveal">
+    <p class="section-tag">Capabilities</p>
+    <h2 class="section-title">Skills &<br>Software</h2>
+  </div>
+  <div class="skills-outer">
+    <div>
+      <div class="skill-category reveal">
+        <h3>Core Competencies</h3>
+        <div class="skill-list">
+          <span class="skill-tag">Creative Thinking</span>
+          <span class="skill-tag">Sketching</span>
+          <span class="skill-tag">Documentation</span>
+          <span class="skill-tag">Coordination</span>
+          <span class="skill-tag">Communication</span>
+          <span class="skill-tag">Drafting</span>
+          <span class="skill-tag">Passive Design</span>
+          <span class="skill-tag">Sustainable Architecture</span>
+          <span class="skill-tag">Climate-Responsive Design</span>
+          <span class="skill-tag">Earthy Materials</span>
+          <span class="skill-tag">Concept Development</span>
+          <span class="skill-tag">Site Analysis</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="skill-category reveal">
+        <h3>Software Proficiency</h3>
+        <div class="software-grid">
+          <div class="sw-item"><span class="sw-icon">R</span><div style="flex:1"><p class="sw-name">Revit</p><div class="sw-bar-wrap"><div class="sw-bar" data-width=".85"></div></div></div></div>
+          <div class="sw-item"><span class="sw-icon">Ps</span><div style="flex:1"><p class="sw-name">Photoshop</p><div class="sw-bar-wrap"><div class="sw-bar" data-width=".75"></div></div></div></div>
+          <div class="sw-item"><span class="sw-icon">A</span><div style="flex:1"><p class="sw-name">AutoCAD</p><div class="sw-bar-wrap"><div class="sw-bar" data-width=".9"></div></div></div></div>
+          <div class="sw-item"><span class="sw-icon">Id</span><div style="flex:1"><p class="sw-name">InDesign</p><div class="sw-bar-wrap"><div class="sw-bar" data-width=".7"></div></div></div></div>
+          <div class="sw-item"><span class="sw-icon">Su</span><div style="flex:1"><p class="sw-name">SketchUp</p><div class="sw-bar-wrap"><div class="sw-bar" data-width=".88"></div></div></div></div>
+          <div class="sw-item"><span class="sw-icon">V</span><div style="flex:1"><p class="sw-name">V-Ray</p><div class="sw-bar-wrap"><div class="sw-bar" data-width=".65"></div></div></div></div>
+          <div class="sw-item"><span class="sw-icon">Lm</span><div style="flex:1"><p class="sw-name">Lumion</p><div class="sw-bar-wrap"><div class="sw-bar" data-width=".6"></div></div></div></div>
+          <div class="sw-item"><span class="sw-icon">Rh</span><div style="flex:1"><p class="sw-name">Rhino</p><div class="sw-bar-wrap"><div class="sw-bar" data-width=".55"></div></div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience" id="experience">
+  <div class="reveal">
+    <p class="section-tag">Professional Journey</p>
+    <h2 class="section-title">Experience</h2>
+  </div>
+  <div class="exp-timeline">
+    <div class="exp-item reveal">
+      <p class="exp-year">2024</p>
+      <h3 class="exp-role">Construction Intern</h3>
+      <p class="exp-company">Sri Balaji Constructions</p>
+      <span class="exp-type">Construction</span>
+    </div>
+    <div class="exp-item reveal">
+      <p class="exp-year">2025</p>
+      <h3 class="exp-role">Architecture Intern</h3>
+      <p class="exp-company">Acroverse — Architecture Firm</p>
+      <span class="exp-type">Architecture Practice</span>
+    </div>
+    <div class="exp-item reveal">
+      <p class="exp-year">2026</p>
+      <h3 class="exp-role">Freelance Architect</h3>
+      <p class="exp-company">Independent Residential Projects</p>
+      <span class="exp-type">Freelance</span>
+    </div>
+  </div>
+</section>
+
+<!-- PARTICIPATION / AWARDS -->
+<section class="participation" id="participation">
+  <div class="reveal">
+    <p class="section-tag">Competitions & Recognition</p>
+    <h2 class="section-title">Participation &<br>Achievements</h2>
+  </div>
+  <div class="awards-list">
+    <div class="award-item reveal">
+      <div><p class="award-title"><strong>AIS ADO 7.0 Olympiad</strong></p><p class="award-sub">National Level Competition</p></div>
+      <span class="award-badge">Nationals 2nd Runner</span>
+    </div>
+    <div class="award-item reveal">
+      <div><p class="award-title"><strong>Solar Decathlon India</strong></p><p class="award-sub">National Level Competition</p></div>
+      <span class="award-badge">Nationals Selected</span>
+    </div>
+    <div class="award-item reveal">
+      <div><p class="award-title"><strong>Gyproc 2.0</strong></p><p class="award-sub">Design Competition · 2026</p></div>
+      <span class="award-badge">Top 50</span>
+    </div>
+    <div class="award-item reveal">
+      <div><p class="award-title"><strong>Transperence 18.0</strong></p><p class="award-sub">Architecture Competition · 2023</p></div>
+      <span class="award-badge">Participant</span>
+    </div>
+    <div class="award-item reveal">
+      <div><p class="award-title"><strong>COA Heritage Awards</strong></p><p class="award-sub">Council of Architecture · 2023</p></div>
+      <span class="award-badge">Awardee</span>
+    </div>
+    <div class="award-item reveal">
+      <div><p class="award-title"><strong>The Drawing Board</strong></p><p class="award-sub">Competition · 2025</p></div>
+      <span class="award-badge">Participant</span>
+    </div>
+    <div class="award-item reveal">
+      <div><p class="award-title"><strong>AYDA Awards</strong></p><p class="award-sub">Asian Young Designer Award · 2026</p></div>
+      <span class="award-badge">Participant</span>
+    </div>
+    <div class="award-item reveal">
+      <div><p class="award-title"><strong>Velux Daylight</strong></p><p class="award-sub">International Competition · 2026</p></div>
+      <span class="award-badge">Participant</span>
+    </div>
+    <div class="award-item reveal">
+      <div><p class="award-title"><strong>Volume Zero Tiny House</strong></p><p class="award-sub">Design Competition · 2026</p></div>
+      <span class="award-badge">Participant</span>
+    </div>
+    <div class="award-item reveal">
+      <div><p class="award-title"><strong>GITAM — Aqua Terra</strong></p><p class="award-sub">Architecture Competition · 2026</p></div>
+      <span class="award-badge">Participant</span>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS GALLERY -->
+<section class="gallery-section" id="gallery">
+  <div class="gallery-intro reveal">
+    <div>
+      <p class="section-tag">Moments Captured</p>
+      <h2 class="section-title">Achievements<br><em style="color:var(--gold)">Gallery</em></h2>
+    </div>
+    <p class="right-note">AIS ADO 7.0 Olympiad — Regional &amp; National rounds. These photos will be replaced with your originals.</p>
+  </div>
+
+  <!-- ROW 1: Regional | Nationals -->
+  <div class="achieve-grid">
+    <!-- LEFT COLUMN -->
+    <div class="achieve-col reveal">
+      <p class="achieve-col-label">AIS ADO 7.0 — Regional Round</p>
+      <div class="photo-card tall">
+        <div class="photo-dummy" style="background:linear-gradient(135deg,#0f0c14 0%,#1a1530 100%)">
+          <div class="photo-dummy-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          </div>
+          <p class="photo-dummy-label">Group Photo<br>Regional Round</p>
+          <p class="photo-dummy-note">Replace with your photo</p>
+        </div>
+        <span class="photo-badge">Regional</span>
+        <div class="photo-card-overlay"></div>
+        <div class="photo-card-caption">
+          <p class="caption-event">AIS ADO 7.0 Olympiad</p>
+          <p class="caption-title">Regional Round — Group</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN: two stacked -->
+    <div class="achieve-col reveal">
+      <p class="achieve-col-label">AIS ADO 7.0 — National Round</p>
+      <div class="photo-card short">
+        <div class="photo-dummy" style="background:linear-gradient(135deg,#0a1018 0%,#121e2e 100%)">
+          <div class="photo-dummy-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          </div>
+          <p class="photo-dummy-label">Award Ceremony<br>National Round</p>
+          <p class="photo-dummy-note">Replace with your photo</p>
+        </div>
+        <span class="photo-badge" style="background:transparent;border:1px solid var(--gold);color:var(--gold)">Nationals</span>
+        <div class="photo-card-overlay"></div>
+        <div class="photo-card-caption">
+          <p class="caption-event">AIS ADO 7.0 Olympiad</p>
+          <p class="caption-title">Award Ceremony on Stage</p>
+        </div>
+      </div>
+      <div class="photo-card short">
+        <div class="photo-dummy" style="background:linear-gradient(135deg,#100a10 0%,#201525 100%)">
+          <div class="photo-dummy-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          </div>
+          <p class="photo-dummy-label">With Jury<br>National Round</p>
+          <p class="photo-dummy-note">Replace with your photo</p>
+        </div>
+        <div class="photo-card-overlay"></div>
+        <div class="photo-card-caption">
+          <p class="caption-event">AIS ADO 7.0 Olympiad</p>
+          <p class="caption-title">National Round — Jury Meet</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROW 2: Large Group + Trophy (2nd Runner Up) -->
+  <div class="achieve-strip">
+    <!-- Trophy -->
+    <div class="photo-card reveal" style="aspect-ratio:3/4">
+      <div class="photo-dummy" style="background:linear-gradient(160deg,#0e0c08 0%,#1c1810 100%)">
+        <div class="photo-dummy-icon" style="border-color:var(--gold);width:64px;height:64px">
+          <svg viewBox="0 0 24 24" style="width:28px;height:28px"><path d="M8 21h8M12 17v4M17 7a5 5 0 01-10 0V3h10v4z"/><path d="M3 7h2M19 7h2"/></svg>
+        </div>
+        <p class="photo-dummy-label" style="color:var(--gold-light)">Trophy Photo<br>2nd Runner Up</p>
+        <p class="photo-dummy-note">Replace with your photo</p>
+      </div>
+      <span class="photo-badge" style="background:var(--gold);top:auto;bottom:1rem;left:1rem">2nd Runner Up</span>
+      <div class="photo-card-overlay"></div>
+      <div class="photo-card-caption">
+        <p class="caption-event">AIS Olympiad</p>
+        <p class="caption-title">National Round — 2nd Runner Up Trophy</p>
+      </div>
+    </div>
+    <!-- All participants group -->
+    <div class="photo-card reveal" style="aspect-ratio:auto;min-height:300px">
+      <div class="photo-dummy" style="background:linear-gradient(135deg,#080a0f 0%,#101520 100%);height:100%;min-height:300px">
+        <div class="photo-dummy-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        </div>
+        <p class="photo-dummy-label">All Participants<br>National Group Photo</p>
+        <p class="photo-dummy-note">Replace with your photo</p>
+      </div>
+      <div class="photo-card-overlay"></div>
+      <div class="photo-card-caption">
+        <p class="caption-event">AIS ADO 7.0 Olympiad — Nationals</p>
+        <p class="caption-title">Full Participants Group Photo</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERESTS -->
+<section class="interests" id="interests">
+  <div class="reveal">
+    <p class="section-tag">Beyond Architecture</p>
+    <h2 class="section-title">Interests</h2>
+  </div>
+  <div class="interests-grid">
+    <div class="interest-card reveal"><span class="interest-icon">✈</span><p class="interest-name">Travelling</p></div>
+    <div class="interest-card reveal"><span class="interest-icon">✏</span><p class="interest-name">Sketching</p></div>
+    <div class="interest-card reveal"><span class="interest-icon">◈</span><p class="interest-name">Games</p></div>
+    <div class="interest-card reveal"><span class="interest-icon">◉</span><p class="interest-name">Photography</p></div>
+    <div class="interest-card reveal"><span class="interest-icon">♩</span><p class="interest-name">Music</p></div>
+    <div class="interest-card reveal"><span class="interest-icon">◫</span><p class="interest-name">Painting</p></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-grid">
+    <div class="reveal">
+      <p class="section-tag">Get in Touch</p>
+      <h2 class="section-title">Let's<br>Collaborate</h2>
+      <div class="contact-detail"><span class="cd-value">I'm open to internship opportunities, competition collaborations, and freelance residential projects. Let's create something meaningful together.</span></div>
+      &nbsp;
+      <div class="contact-details">
+        <div class="contact-detail"><span class="cd-label">Location</span><span class="cd-value">Srivilliputhur, Tamil Nadu, India</span></div>
+        <div class="contact-detail"><span class="cd-label">Phone</span><span class="cd-value">+91 89032 39892</span></div>
+        <div class="contact-detail"><span class="cd-label">Email</span><span class="cd-value">vizarchitect2005@gmail.com<br>vishwarajasekar1155@gmail.com</span></div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="contact-form">
+        <div class="form-group"><input type="text" placeholder="Your Name"></div>
+        <div class="form-group"><input type="email" placeholder="Email Address"></div>
+        <div class="form-group"><input type="text" placeholder="Subject / Project Type"></div>
+        <div class="form-group"><textarea placeholder="Your message…"></textarea></div>
+        <button class="form-submit"><span>Send Message →</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-logo">V I S H W A &nbsp; R A J A S E K A R</span>
+  <span class="footer-copy">© 2026 Vishwa Rajasekar. B.Arch Student, Measi Academy of Architecture.</span>
+  <div class="footer-social">
+    <a href="mailto:vizarchitect2005@gmail.com">Email</a>
+    <a href="#">Instagram</a>
+    <a href="#">LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('load',()=>{setTimeout(()=>document.getElementById('loader').classList.add('gone'),1300)})
+
+const cur=document.getElementById('cursor'),ring=document.getElementById('cursorRing')
+let mx=0,my=0,rx=0,ry=0
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'})
+;(function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing)})()
+document.querySelectorAll('a,button,.interest-card,.edu-item,.skill-tag').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{ring.style.transform='translate(-50%,-50%) scale(1.8)';ring.style.opacity='.3'})
+  el.addEventListener('mouseleave',()=>{ring.style.transform='translate(-50%,-50%) scale(1)';ring.style.opacity='.6'})
+})
+
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){
+      setTimeout(()=>e.target.classList.add('visible'),i*70)
+      if(e.target.classList.contains('visible'))return
+      obs.unobserve(e.target)
+    }
+  })
+},{threshold:.08,rootMargin:'0px 0px -50px 0px'})
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el))
+
+// Animate software bars
+const barObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.sw-bar').forEach(bar=>{
+        const w=parseFloat(bar.dataset.width)||.7
+        bar.style.transform=`scaleX(${w})`
+        bar.classList.add('animated')
+      })
+      barObs.unobserve(e.target)
+    }
+  })
+},{threshold:.2})
+document.querySelectorAll('.software-grid').forEach(g=>barObs.observe(g))
+
+const nav=document.getElementById('mainNav')
+window.addEventListener('scroll',()=>{nav.style.padding=window.scrollY>80?'1.2rem 4rem':'2rem 4rem'})
+</script>
+</body>
+</html>
